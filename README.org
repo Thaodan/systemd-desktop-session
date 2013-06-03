@@ -1,0 +1,31 @@
+* General Startup
+User Session is started via systemd autologin or via systemd xdg xsession in login manager
+0. Systemd User starts
+1. call of  users default.target
+2. default target wants DEs target
+3. DEs target wants: XDG-DE.target <DE specific stuff> xdg-autostart.target
+4  XDG-target  de_init.service xorg.target dbus.socket 
+
+* de_init.service
+  Init Basic DE stuff like:
+  * set mouse theme
+  * set randr stuff
+  * set for fonts dpi
+  * source env files (/etc/profile.d, source stuff that should only runned if DE is running)
+  
+* DE specific targets
+Targets that pull specific targets or services.
+
+Desktop Enviroment examples:
+** KDE
+   init_kde.service
+   pulls kded.service
+   pulls kded-modules.target
+   
+
+
+
+* XDG Autostart.target
+Targets that are started after a DE is  running.
+This services  are to install when autostart.target is wanted (unless set that is not)
+ 

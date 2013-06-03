@@ -1,0 +1,7 @@
+[Unit]
+Description=Complete workspace
+Wants=kdemodules.target
+
+[Install]
+Alias=default.target
+

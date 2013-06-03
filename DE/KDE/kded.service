@@ -1,0 +1,13 @@
+[Unit]
+Description=KDE daemon
+
+[Service]
+Environment=KDEVARTMP=/var/tmp/%U
+Environment=LD_BIND_NOW=true
+Type=oneshot
+ExecStart=/usr/bin/kdeinit4 --no-fork
+ExecStart=/usr/bin/kwrapper4 /usr/bin/kded4
+
+[Install]
+WantedBy=kdemodules.target
+

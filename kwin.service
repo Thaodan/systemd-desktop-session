@@ -1,0 +1,15 @@
+[Unit]
+Description=KWin
+#Requiress=xorg.target
+Wants=window-manager.target
+Before=window-manager.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/kwin
+ExecReload=/usr/bin/kwin --replace
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=kdemodules.target

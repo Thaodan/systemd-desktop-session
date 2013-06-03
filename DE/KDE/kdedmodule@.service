@@ -1,0 +1,13 @@
+[Unit]
+Description=KDE module %I
+Wants=kded.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/qt4/bin/qdbus org.kde.kded /kded loadModule %I
+# This command is always executed for some reason, leading to module being unloaded right after loading
+# Pull requests are welcome ;)
+# ExecStop=/usr/lib/qt4/bin/qdbus org.kde.kded /kded unloadModule %I
+
+[Install]
+WantedBy=kdemodules.target
