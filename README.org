@@ -4,20 +4,26 @@ User Session is started via systemd autologin or via systemd xdg xsession in log
 1. call of  users default.target
 2. default target wants DEs target
 3. DEs target wants: XDG-DE.target <DE specific stuff> xdg-autostart.target
-4  XDG-target  de_init.service xorg.target dbus.socket 
+4  XDG-target wants: de_init.service display-manager.service dbus.socket 
 
-* de_init.service
-  Init Basic DE stuff like:
-  * set mouse theme
-  * set randr stuff
-  * set for fonts dpi
-  * source env files (/etc/profile.d, source stuff that should only runned if DE is running)
+
+* XDG-DE.target
+pulls some stuff for services that are non DE specific like pulseaudio if enabled
+
+** display-manager.service
+Provided by any display-manager, just to make shure that a display service is running (for example if we are in tty)
+** de_init.service
+   Init Basic DE stuff like:
+   *set mouse theme
+   * set randr stuff
+   * set for fonts dpi
+   * source env files (/etc/profile.d, source stuff that should only runned if DE is running)
   
 * DE specific targets
 Targets that pull specific targets or services.
 
 Desktop Enviroment examples:
-** KDE
+** KDE (kde.target)
    init_kde.service
    pulls kded.service
    pulls kded-modules.target
