@@ -1,0 +1,8 @@
+[Unit]
+Description=Start X11
+
+[Service]
+ExecStart=/usr/bin/startx
+
+[Install]
+Alias=display-manager.service
